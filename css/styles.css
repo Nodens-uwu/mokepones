@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Space+Grotesk:wght@600&display=swap'); /*No copiar etiquetas link*/
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #181D31;
+}
+
+#Choose-pet {
+    display: flex; /*Por defecto, la alineación se hace horizontal y no vertical; ya que trae la propiedad flex-direction: row por defecto*/
+    flex-direction: column; /*Hace que todo se alineé verticalmente*/
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    color: #678983;
+    font-size: 52px;
+}
+
+.subtitle {
+    color: #E6DDC4;
+    font-size: 24px;
+
+}
+
+.tarjets {
+    display: flex;
+    gap: 10px;
+}
+
+.tarjet-mokepon {
+    box-sizing: border-box; /* No permite que la caja crezca mas de lo se estableció en el content (primera caja)*/
+    display: flex;
+    background-color: #678983;
+    color: #F0E9D2;
+    width: 220px;
+    height: 150px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 12px;
+    border:#E6DDC4 dotted 2px;
+    align-items: center;
+    justify-content: center;
+}
+
+.tarjet-mokepon img {
+    width: 120px;
+}
+
+input {
+    display: none; /*Al ocultar los input tipo radio: sin un margin, se verá todo pegado*/
+}
+
+input:checked + label { /*Quedaría mal con la típica estructura de label - input. Por ello edito el html*/
+    background-color: #F0E9D2;
+    color: #181D31;
+}
+
+input:hover + label {
+    cursor: pointer;
+}
+
+#select-pet, .btn-atack, #reload-button { /*Modificar botón de seleccionar mascota y posteriormente los botones de ataque y el botón de reload*/
+    box-sizing: border-box;
+    background-color: #E6DDC4;
+    color: #181D31;
+    width: 100px;
+    height: 50px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+    border: #F0E9D2 solid 2px;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
+
+#select-pet:hover, .btn-atack:hover, #reload-button:hover {
+    cursor: pointer;
+}
+
+#seeMap {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#seeMap button {
+    box-sizing: border-box;
+    background-color: #E6DDC4;
+    color: #181D31;
+    width: 80px;
+    height: 50px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: bolder;
+    border: #F0E9D2 solid 2px;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    margin: 5px 0px;
+}
+
+#Choose-atack {
+    flex-direction: column;
+    align-items: center;
+}
+
+#message-boton-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#messages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #678983;
+    color: #F0E9D2;
+    font-weight: bolder;
+    width: 280px;
+    height: 50px;
+    border-radius: 12px;
+    border:#E6DDC4 dotted 2px;
+    padding: 12px;
+    margin: 12px;
+}
+
+.info-game {
+    display: grid;
+    grid-template-columns: 100px 100px;
+    text-align: center; /*Centrar todos los elementos*/
+    color: #F0E9D2; 
+     
+}
+
+@media (max-width: 644px) { /*El responsive irá en pantallas que tengan máximo 640px*/
+
+    .tarjets {
+        flex-direction: column;
+    }
+
+    div .btn-atack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 300px) {
+    #seeMap div {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+} 

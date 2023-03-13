@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mokepon</title>
+        <link rel="stylesheet" href="./css/styles.css">
+    </head>
+    <body>
+        <section id="Choose-pet">
+            <h1 class="title">Mokepon</h1>
+
+            <h2 class="subtitle">Choose your pet:</h2>
+
+            <div id="content-mokepones" class="tarjets">
+                
+            </div>
+
+            <button id="select-pet">Select</button>
+        </section>
+
+        <section id="seeMap">
+            <h2 class="subtitle">Travel the map with your pet</h2>
+            <canvas id="map"></canvas>
+            <button class="moves" onmouseup="stopmove()" onmousedown="moveUp()">move up</button>
+            <div>
+                <button class="moves" onmouseup="stopmove()" onmousedown="moveLeft()">move left</button>
+                <button class="moves" onmouseup="stopmove()" onmousedown="moveDown()">move down</button>
+                <button class="moves" onmouseup="stopmove()" onmousedown="moveRight()">move right</button>
+            </div>
+        </section>
+
+        <section id="Choose-atack">
+            <h1 class="title">Mokepon</h1>
+            <h2 class="subtitle">Choose your atacks:</h2>
+            <div id="atacks-content">
+                
+            </div>
+
+            <div id="message-boton-section">
+                <section id="messages">
+                    <p id="results">Good luck </p>
+                </section>
+            
+                <section id="Reload">
+                    <button id="reload-button"> Reload ♻</button>
+                </section>  
+            </div>
+            
+            <div class="info-game">
+                <div>
+                    <p id="mascota-jugador"></p> <!--En un párrafo, usar "span"-->
+                    <p id="phPet">0</p> <!--textos dinámicos-->
+                    <div id="player-atacks"></div>
+                </div>
+                <div>
+                    <p id="mascota-enemigo"></p>
+                    <p id="phPetEnemy">0</p>
+                    <div id="enemy-atacks"></div>
+                </div>
+            </div>
+        </section>
+        <script src="./js/code.js"></script><!--Para que no se bloqueé en el js y cargue primero el html y el css-->
+    </body>
+</html>
