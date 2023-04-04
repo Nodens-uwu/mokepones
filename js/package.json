@@ -1,0 +1,23 @@
+{
+  "name": "mokepones",
+  "version": "1.0.0",
+  "description": "Also you can download the images right here: https://imgur.com/gallery/sKQCrak This is a game made with js and node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nodens-uwu/mokepones.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nodens-uwu/mokepones/issues"
+  },
+  "homepage": "https://github.com/Nodens-uwu/mokepones#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
