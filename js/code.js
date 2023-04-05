@@ -24,6 +24,7 @@ let spanMascotaJuador = document.getElementById('mascota-jugador'); //Declarar s
 let mascotaJugador; //Identificar que mokepon es para sus ataques
 let mascotaJugadorObjeto // Identificar qué mokepon es para su imágen
 let jugadorId= null;
+let enemigoId = null;
 const sectionSeleccionarMascota = document.getElementById('Choose-pet'); //Declarar el contenido que vamos a ocultar
 const spanMascotaEnemigo = document.getElementById('mascota-enemigo'); //Declarar span para hacerlo dinámico
 
@@ -298,7 +299,9 @@ function secuenciaAtaques() {
                 boton.style.background= '#678983';
                 btn_tierra.disabled=true; //deshabitar botones
             } 
-            ataqueAleatorioEnemigo();
+            if (ataque_jugador.length===5) {
+                enviarAtaques();
+            }
         })
     }
     )   
@@ -330,7 +333,7 @@ function inicarCombate() { //Validar que hayan sido seleccionados los cinco ataq
 }
 
 function combate() {
-
+    clearInterval(intervalo)
     for (let index = 0; index < ataque_jugador.length; index++) {
         if (ataque_jugador[index] === ataque_enemigo[index]) {
             indexRivales(index, index);
@@ -478,6 +481,7 @@ function revisarColision(enemigo) {
     } else {
         stopmove();
         clearInterval(intervalo)
+        enemigoId = enemigo.id;
         sectionSeleccionarAtaque.style.display = 'flex'; //Mostrar el contenido de ataque
         sectionVerMapa.style.display = 'none'
         seleccionarMascotaEnemigo(enemigo)
@@ -504,22 +508,22 @@ function enviarPosicion(x, y) {
                         if (mokeponEnemigo !==undefined) {
                             switch (mokeponNombre) {
                                 case 'Hipodoge':
-                                    mokeponEnemigo = new Mokepon('Hipodoge', './assets/mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png',); //objetos instancia
+                                    mokeponEnemigo = new Mokepon('Hipodoge', './assets/mokepon_hipodoge_attack.png', 5, './assets/hipodoge.png', enemigo.id); //objetos instancia
                                     break;
                                 case 'Capipepo':
-                                    mokeponEnemigo = new Mokepon('Capipepo', './assets/mokepon_capipepo_attack.png', 5, './assets/capipepo.png',);
+                                    mokeponEnemigo = new Mokepon('Capipepo', './assets/mokepon_capipepo_attack.png', 5, './assets/capipepo.png', enemigo.id);
                                     break;
                                 case 'Ratigueya':
-                                    mokeponEnemigo = new Mokepon('Ratigueya','./assets/mokepon_ratigueya_attack.png',5, './assets/ratigueya.png');
+                                    mokeponEnemigo = new Mokepon('Ratigueya','./assets/mokepon_ratigueya_attack.png',5, './assets/ratigueya.png', enemigo.id);
                                     break;
                                 case 'Langostelvis':
-                                    mokeponEnemigo = new Mokepon('Langostelvis','./assets/mokepon_langostelvis_attack.png',5, './assets/langostelvis.png',);
+                                    mokeponEnemigo = new Mokepon('Langostelvis','./assets/mokepon_langostelvis_attack.png',5, './assets/langostelvis.png', enemigo.id);
                                     break;
                                 case 'Tucapalma':
-                                    mokeponEnemigo = new Mokepon('Tucapalma','./assets/mokepon_tucapalma_attack.png',5, './assets/tucapalma.png');
+                                    mokeponEnemigo = new Mokepon('Tucapalma','./assets/mokepon_tucapalma_attack.png',5, './assets/tucapalma.png', enemigo.id);
                                     break;
                                 case 'Pydos':
-                                    mokeponEnemigo = new Mokepon('Pydos','./assets/mokepon_pydos_attack.png',5, './assets/pydos.png');
+                                    mokeponEnemigo = new Mokepon('Pydos','./assets/mokepon_pydos_attack.png',5, './assets/pydos.png', enemigo.id);
                                     break;
                             }
                             mokeponEnemigo.x = enemigo.x;
@@ -530,6 +534,34 @@ function enviarPosicion(x, y) {
             }) 
     }
 })
+}
+
+function enviarAtaques() {
+    fetch(`http://localhost:8080/mokepon/${jugadorId}/ataques`,{
+        method: "post",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ataques: ataque_jugador
+        })
+    }) 
+    intervalo = setInterval(obtenerAtaques, 50)
+}
+
+function obtenerAtaques() {
+    fetch(`http://localhost:8080/mokepon/${enemigoId}/ataques`)
+        .then(function (res) {
+            if (res.ok) {
+                res.json()
+                    .then(function ({ataques}) {
+                        if (ataques.length === 5) {
+                            ataque_enemigo = ataques
+                            combate()
+                        }
+                    })
+            }
+        })
 }
 
 function aletorie(min, max) {

@@ -27,6 +27,10 @@ class Jugador {
     this.x = x
     this.y = y
   }
+
+  asignaAtaques(ataques) {
+    this.ataques = ataques
+  }
  
 }
 class Mokepon {
@@ -57,7 +61,6 @@ app.post('/mokepon/:jugadorId', (req, res) => { // /:Indica una variable dentro 
   if (jugadorIndex >= 0) {
     jugadores[jugadorIndex].asignarMokepon(mokepon)
   }
-
   console.log(jugadores);
   console.log(jugadorId);
   res.end() //Si la const jugadorId no recibe parametros, queda vacía por defecto. Por eso se hace .end()
@@ -71,10 +74,34 @@ app.post('/mokepon/:jugadorId/posicion', (req, res) => {
   if (jugadorIndex >= 0) {
     jugadores[jugadorIndex].actualizarPosicion(x, y)
   }
-const enemigos = jugadores.filter((jugador) =>jugadorId!== jugador.id)
+const enemigos = jugadores.filter((jugador) => {
+  return jugadorId!== jugador.id && jugador.mokepon
+})
   res.send({
     enemigos //Envía un json de de la lista
   })
+})
+
+app.post('/mokepon/:jugadorId/ataques', (req, res) => { //Envíar datos al servidor
+  const jugadorId = req.params.jugadorId || ""
+  const ataques = req.body.ataques || []
+  
+  const jugadorIndex = jugadores.findIndex((jugador)=> jugadorId === jugador.id)
+
+  if (jugadorIndex >= 0) {
+    jugadores[jugadorIndex].asignaAtaques(ataques)
+  }
+
+  res.end() //Si la const jugadorId no recibe parametros, queda vacía por defecto. Por eso se hace .end()
+})
+
+app.get('/mokepon/:jugadorId/ataques', (req, res) => { //Recibir datos del servidor
+  const jugadorId = req.params.jugadorId || ""
+  const jugador = jugadores.find(jugador => jugador.id === jugadorId)
+  
+  res.send({
+    ataques: jugador.ataques || []
+  }) //Si la const jugadorId no recibe parametros, queda vacía por defecto. Por eso se hace .end()
 })
 
 // Activar servidor
