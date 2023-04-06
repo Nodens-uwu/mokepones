@@ -205,8 +205,6 @@ function unirseAlJuego() { //Consumiento el api de express.js y fecth: API Rest
 
 function seleccionarMascotaJugador() { //Función a ejecutar luego del clic al botón
 //Cambiar el contenido del HTML 👇
-sectionSeleccionarMascota.style.display = 'none'; //Ocultar el contenido de mascota
-
     if (inputHipodoge.checked) { //Si el primer input fue seleccionado... 
         spanMascotaJuador.innerHTML = inputHipodoge.id //Inserte en el span la palabra 'Hipodoge'
         mascotaJugador = inputHipodoge.id;
@@ -228,7 +226,10 @@ sectionSeleccionarMascota.style.display = 'none'; //Ocultar el contenido de masc
     }
     else {
         alert('No has seleccionado un makipan');
+        return //En este caso en especifico detiene todo el proceso. Normalmente devuelve algo
     }
+
+    sectionSeleccionarMascota.style.display = 'none'; //Ocultar el contenido de mascota
     enviarMokepon(mascotaJugador);
     extraerAtaques(mascotaJugador);
     sectionVerMapa.style.display = 'flex'

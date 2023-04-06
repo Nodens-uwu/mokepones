@@ -12,6 +12,7 @@ const app = express()
 //Quitar ciertos errores:
 app.use(cors()) // res.setHeader('Access-Control-Allow-Origin', '*') cabecera para decirle al navegador desde qué origen va a hacer 
 app.use(express.json()) //Permitir la transferencia de archivos .json mediante post
+app.use(express.static('public')) //Mostrar la carpeta public en cualquier host
 
 const jugadores = []
 

@@ -23,11 +23,11 @@
         <section id="seeMap">
             <h2 class="subtitle">Travel the map with your pet</h2>
             <canvas id="map"></canvas>
-            <button class="moves" onmouseup="stopmove()" onmousedown="moveUp()">move up</button>
+            <button class="moves" ontouchend="stopmove()" onmouseup="stopmove()" ontouchstart="moveUp()" onmousedown="moveUp()">move up</button>
             <div>
-                <button class="moves" onmouseup="stopmove()" onmousedown="moveLeft()">move left</button>
-                <button class="moves" onmouseup="stopmove()" onmousedown="moveDown()">move down</button>
-                <button class="moves" onmouseup="stopmove()" onmousedown="moveRight()">move right</button>
+                <button class="moves" ontouchend="stopmove()" onmouseup="stopmove()" ontouchstart="moveLeft()"onmousedown="moveLeft()">move left</button>
+                <button class="moves" ontouchend="stopmove()" onmouseup="stopmove()" ontouchstart="moveDown()" onmousedown="moveDown()">move down</button>
+                <button class="moves" ontouchend="stopmove()" onmouseup="stopmove()" ontouchstart="moveRight()" onmousedown="moveRight()">move right</button>
             </div>
         </section>
 
